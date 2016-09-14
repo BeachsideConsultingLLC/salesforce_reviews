@@ -1,0 +1,171 @@
+<apex:page standardController="Employee_Review__c" standardStylesheets="true" extensions="ratingsOptions">
+    <apex:stylesheet value="{!$Resource.BCSStyle}" />
+    <apex:form styleClass="bsc-container">
+     <apex:pageBlock mode="edit" id="thePageBlock">
+     
+   <div class="bsc-container bsc-section bsc-border bsc-round-xlarge bsc-text-red bsc-white bsc-border bsc-padding-8">
+      <p><h3 class="bsc-text-shadow">Employee Information</h3></p>
+     <div class="bsc-row bsc-light-grey bsc-border">
+      <div class="bsc-light-blue bsc-container bsc-quarter">
+          <label><h4 class="bsc-text-shadow">Employee ID</h4></label>
+      </div>
+      <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+        <apex:inputField value="{!Employee_Review__c.Employee_ID__c}" id="employeeID" styleClass="bsc-select"/>
+     </div><div class=" bsc-rest" />
+   </div>
+   <div class="bsc-row bsc-light-grey bsc-border">
+      <div class="bsc-light-blue bsc-container bsc-quarter">
+          <label><h4 class="bsc-text-shadow">Period</h4></label>         
+      </div>
+      <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >  
+        <apex:inputField value="{!Employee_Review__c.Period__c}" id="period" styleClass="bsc-select"/>
+      </div><div class=" bsc-rest" />
+   </div>   
+    <div class="bsc-row bsc-light-grey bsc-border">
+      <div class="bsc-light-blue bsc-container bsc-quarter">
+          <label><h4 class="bsc-text-shadow">Review Type</h4></label>         
+      </div>
+      <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >  
+        <apex:inputField value="{!Employee_Review__c.Review_Type__c}" id="review__reviewtype" styleClass="bsc-select bsc-third">
+            <apex:actionSupport event="onchange"
+            rerender="thePageBlock"
+            status="status"/>
+         </apex:inputField>
+       </div><div class=" bsc-rest" />
+    </div>
+  </div>
+  <div class="bsc-container bsc-section bsc-border bsc-round-xlarge bsc-text-red bsc-white bsc-border bsc-padding-4">
+    <h3 class="bsc-text-shadow">Ratings</h3>
+    <div class="bsc-row bsc-light-grey bsc-border">
+         <div class="bsc-light-blue bsc-container bsc-quarter">
+              <label><h4 class="bsc-text-shadow">Rating 1</h4></label>
+         </div>
+         
+     <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <apex:selectRadio value="{!Employee_Review__c.Rating_1__c}" id="review__rating1">
+                <apex:selectOptions value="{!items}"/>
+             </apex:selectRadio>
+         </div>
+         <div class=" bsc-rest" />
+      </div> 
+      <div class="bsc-row bsc-light-grey bsc-border">
+         <div class="bsc-light-blue bsc-container bsc-quarter">
+              <label><h4 class="bsc-text-shadow">Rating 2</h4></label>
+         </div>
+         <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <apex:selectRadio value="{!Employee_Review__c.Rating_2__c}" id="review__rating2">
+                <apex:selectOptions value="{!items}"/>
+             </apex:selectRadio>
+         </div>
+         <div class=" bsc-rest" />
+      </div> 
+        <div class="bsc-row bsc-light-grey bsc-border">
+             <div class="bsc-light-blue bsc-container bsc-quarter">
+                  <label><h4 class="bsc-text-shadow">Rating 3</h4></label>
+             </div>
+             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+                 <apex:selectRadio value="{!Employee_Review__c.Rating_3__c}" id="review__rating3">
+                    <apex:selectOptions value="{!items}"/>
+                 </apex:selectRadio>
+             </div>
+             <div class=" bsc-rest" />
+        </div>
+        <div class="bsc-row bsc-light-grey bsc-border">
+             <div class="bsc-light-blue bsc-container bsc-quarter">
+                  <label><h4 class="bsc-text-shadow">Rating 4</h4></label>
+             </div>
+             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+                 <apex:selectRadio value="{!Employee_Review__c.Rating_4__c}" id="review__rating4">
+                    <apex:selectOptions value="{!items}"/>
+                 </apex:selectRadio>
+             </div>
+             <div class=" bsc-rest" />
+        </div>
+        <div class="bsc-row bsc-light-grey bsc-border">
+             <div class="bsc-light-blue bsc-container bsc-quarter">
+                  <label><h4 class="bsc-text-shadow">Rating 5</h4></label>
+             </div>
+             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+                 <apex:selectRadio value="{!Employee_Review__c.Rating_5__c}" id="review__rating5">
+                    <apex:selectOptions value="{!items}"/>
+                 </apex:selectRadio>
+             </div>
+             <div class=" bsc-rest" />
+        </div>
+        <div class="bsc-row bsc-light-grey bsc-border">
+             <div class="bsc-light-blue bsc-container bsc-quarter">
+                  <label><h4 class="bsc-text-shadow">Rating 6</h4></label>
+             </div>
+             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+                 <apex:selectRadio value="{!Employee_Review__c.Rating_6__c}" id="review__rating6">
+                    <apex:selectOptions value="{!items}"/>
+                 </apex:selectRadio>
+             </div>
+             <div class=" bsc-rest" />
+        </div>
+        <div class="bsc-row bsc-light-grey bsc-border">
+             <div class="bsc-light-blue bsc-container bsc-quarter">
+                  <label><h4 class="bsc-text-shadow">Rating 7</h4></label>
+             </div>
+             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+                 <apex:selectRadio value="{!Employee_Review__c.Rating_7__c}" id="review__rating7">
+                    <apex:selectOptions value="{!items}"/>
+                 </apex:selectRadio>
+             </div>
+             <div class=" bsc-rest" />
+        </div>
+        <div class="bsc-row bsc-light-grey bsc-border">
+             <div class="bsc-light-blue bsc-container bsc-quarter">
+                  <label><h4 class="bsc-text-shadow">Rating 8</h4></label>
+             </div>
+             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+                 <apex:selectRadio value="{!Employee_Review__c.Rating_8__c}" id="review__rating8">
+                    <apex:selectOptions value="{!items}"/>
+                 </apex:selectRadio>
+             </div>
+             <div class=" bsc-rest" />
+        </div>
+        <div class="bsc-row bsc-light-grey bsc-border">
+             <div class="bsc-light-blue bsc-container bsc-quarter">
+                  <label><h4 class="bsc-text-shadow">Rating 9</h4></label>
+             </div>
+             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+                 <apex:selectRadio value="{!Employee_Review__c.Rating_9__c}" id="review__rating9">
+                    <apex:selectOptions value="{!items}"/>
+                 </apex:selectRadio>
+             </div>
+             <div class=" bsc-rest" />
+        </div>             
+    </div>
+    <apex:commandButton value="Test" action="{!test}" rerender="out" status="status"/> 
+    <apex:outputPanel id="out">
+    <div class="bsc-container bsc-section bsc-border bsc-round-xlarge bsc-text-red bsc-white bsc-border bsc-padding-4">
+          
+    <div class="bsc-row bsc-light-grey bsc-border">
+         <div class="bsc-light-blue bsc-container bsc-quarter">
+              <label><h4 class="bsc-text-shadow">Overall Rating</h4></label>
+         </div>
+         <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+            <apex:selectRadio value="{!rating}" id="overallrating">
+            <apex:selectOptions value="{!items}"/>
+          </apex:selectRadio>
+             </div>
+                 <div class=" bsc-rest" />
+            </div>    
+    </div>
+ 
+          <apex:actionstatus id="status" startText="testing..."> 
+             <apex:facet name="stop"> 
+               <apex:outputPanel > 
+                  <p>You have selected:</p> 
+               <apex:outputText value="{!rating}"/>
+               
+              </apex:outputPanel> 
+            </apex:facet> 
+          </apex:actionstatus> 
+     </apex:outputPanel> 
+    </apex:pageBlock>
+    </apex:form>
+    
+    
+</apex:page>
