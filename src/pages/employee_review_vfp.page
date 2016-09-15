@@ -9,15 +9,44 @@
       <div class="bsc-light-blue bsc-container bsc-quarter">
           <label><h4 class="bsc-text-shadow">Employee ID</h4></label>
       </div>
-      <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
-        <apex:inputField value="{!Employee_Review__c.Employee_ID__c}" id="employeeID" styleClass="bsc-select"/>
+      <div class="bsc-container bsc-third   bsc-light-grey" >
+        <apex:inputField value="{!Employee_Review__c.Employee_ID__c}" id="employeeID" styleClass="bsc-select">
+        <apex:actionSupport event="onchange"
+            action="{!readEmp}"
+            rerender="empdetails"
+            status="status"/>
+         </apex:inputField>
      </div><div class=" bsc-rest" />
    </div>
+   <apex:outputPanel id="empdetails">
+   <div class="bsc-row bsc-light-grey bsc-border">
+      <div class="bsc-light-blue bsc-container bsc-quarter">
+          <label><h4 class="bsc-text-shadow">Employee Name</h4></label>         
+      </div>
+      <div class="bsc-container bsc-third bsc-light-grey" >  
+        <apex:outputField value="{!emp.First_Name__c}" id="firstname" />&nbsp;<apex:outputField value="{!emp.Last_Name__c}" id="lastname" /> 
+      </div><div class=" bsc-rest" />
+   </div>
+   <div class="bsc-row bsc-light-grey bsc-border">
+      <div class="bsc-light-blue bsc-container bsc-quarter">
+          <label><h4 class="bsc-text-shadow">Date of Hire</h4></label>         
+      </div>
+      <div class="bsc-container bsc-quarter  bsc-light-grey" >  
+        <apex:outputField value="{!emp.Hire_Date__c}" id="hiredate" /> 
+      </div>
+      <div class="bsc-light-blue bsc-container bsc-quarter">
+          <label><h4 class="bsc-text-shadow">Date of Rank</h4></label>         
+      </div>
+      <div class="bsc-container bsc-quarter  bsc-light-grey" >  
+        <apex:outputField value="{!emp.Rank_Date__c}" id="rankdate" /> 
+      </div>
+   </div>
+   </apex:outputPanel>
    <div class="bsc-row bsc-light-grey bsc-border">
       <div class="bsc-light-blue bsc-container bsc-quarter">
           <label><h4 class="bsc-text-shadow">Period</h4></label>         
       </div>
-      <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >  
+      <div class="bsc-container bsc-third   bsc-light-grey" >  
         <apex:inputField value="{!Employee_Review__c.Period__c}" id="period" styleClass="bsc-select"/>
       </div><div class=" bsc-rest" />
    </div>   
@@ -25,8 +54,8 @@
       <div class="bsc-light-blue bsc-container bsc-quarter">
           <label><h4 class="bsc-text-shadow">Review Type</h4></label>         
       </div>
-      <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >  
-        <apex:inputField value="{!Employee_Review__c.Review_Type__c}" id="review__reviewtype" styleClass="bsc-select bsc-third">
+      <div class="bsc-container bsc-third  bsc-light-grey" >  
+        <apex:inputField value="{!Employee_Review__c.Review_Type__c}" id="review__reviewtype" styleClass="bsc-select">
             <apex:actionSupport event="onchange"
             rerender="thePageBlock"
             status="status"/>
@@ -41,7 +70,7 @@
               <label><h4 class="bsc-text-shadow">Rating 1</h4></label>
          </div>
          
-     <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+     <div class="bsc-container bsc-third  bsc-light-grey" >
              <apex:selectRadio value="{!Employee_Review__c.Rating_1__c}" id="review__rating1">
                 <apex:selectOptions value="{!items}"/>
              </apex:selectRadio>
@@ -52,7 +81,7 @@
          <div class="bsc-light-blue bsc-container bsc-quarter">
               <label><h4 class="bsc-text-shadow">Rating 2</h4></label>
          </div>
-         <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+         <div class="bsc-container bsc-third  bsc-light-grey" >
              <apex:selectRadio value="{!Employee_Review__c.Rating_2__c}" id="review__rating2">
                 <apex:selectOptions value="{!items}"/>
              </apex:selectRadio>
@@ -63,7 +92,7 @@
              <div class="bsc-light-blue bsc-container bsc-quarter">
                   <label><h4 class="bsc-text-shadow">Rating 3</h4></label>
              </div>
-             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <div class="bsc-container bsc-third  bsc-light-grey" >
                  <apex:selectRadio value="{!Employee_Review__c.Rating_3__c}" id="review__rating3">
                     <apex:selectOptions value="{!items}"/>
                  </apex:selectRadio>
@@ -74,7 +103,7 @@
              <div class="bsc-light-blue bsc-container bsc-quarter">
                   <label><h4 class="bsc-text-shadow">Rating 4</h4></label>
              </div>
-             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <div class="bsc-container bsc-third   bsc-light-grey" >
                  <apex:selectRadio value="{!Employee_Review__c.Rating_4__c}" id="review__rating4">
                     <apex:selectOptions value="{!items}"/>
                  </apex:selectRadio>
@@ -85,7 +114,7 @@
              <div class="bsc-light-blue bsc-container bsc-quarter">
                   <label><h4 class="bsc-text-shadow">Rating 5</h4></label>
              </div>
-             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <div class="bsc-container bsc-third   bsc-light-grey" >
                  <apex:selectRadio value="{!Employee_Review__c.Rating_5__c}" id="review__rating5">
                     <apex:selectOptions value="{!items}"/>
                  </apex:selectRadio>
@@ -96,7 +125,7 @@
              <div class="bsc-light-blue bsc-container bsc-quarter">
                   <label><h4 class="bsc-text-shadow">Rating 6</h4></label>
              </div>
-             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <div class="bsc-container bsc-third   bsc-light-grey" >
                  <apex:selectRadio value="{!Employee_Review__c.Rating_6__c}" id="review__rating6">
                     <apex:selectOptions value="{!items}"/>
                  </apex:selectRadio>
@@ -107,7 +136,7 @@
              <div class="bsc-light-blue bsc-container bsc-quarter">
                   <label><h4 class="bsc-text-shadow">Rating 7</h4></label>
              </div>
-             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <div class="bsc-container bsc-third   bsc-light-grey" >
                  <apex:selectRadio value="{!Employee_Review__c.Rating_7__c}" id="review__rating7">
                     <apex:selectOptions value="{!items}"/>
                  </apex:selectRadio>
@@ -118,7 +147,7 @@
              <div class="bsc-light-blue bsc-container bsc-quarter">
                   <label><h4 class="bsc-text-shadow">Rating 8</h4></label>
              </div>
-             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <div class="bsc-container bsc-third   bsc-light-grey" >
                  <apex:selectRadio value="{!Employee_Review__c.Rating_8__c}" id="review__rating8">
                     <apex:selectOptions value="{!items}"/>
                  </apex:selectRadio>
@@ -129,7 +158,7 @@
              <div class="bsc-light-blue bsc-container bsc-quarter">
                   <label><h4 class="bsc-text-shadow">Rating 9</h4></label>
              </div>
-             <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+             <div class="bsc-container bsc-third   bsc-light-grey" >
                  <apex:selectRadio value="{!Employee_Review__c.Rating_9__c}" id="review__rating9">
                     <apex:selectOptions value="{!items}"/>
                  </apex:selectRadio>
@@ -145,7 +174,7 @@
          <div class="bsc-light-blue bsc-container bsc-quarter">
               <label><h4 class="bsc-text-shadow">Overall Rating</h4></label>
          </div>
-         <div class="bsc-container bsc-third  bsc-padding-0 bsc-light-grey" >
+         <div class="bsc-container bsc-third   bsc-light-grey" >
             <apex:selectRadio value="{!rating}" id="overallrating">
             <apex:selectOptions value="{!items}"/>
           </apex:selectRadio>
