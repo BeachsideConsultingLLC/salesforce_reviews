@@ -606,6 +606,10 @@
         <relationshipLabel><!-- Employee Reviews (Reviewer) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Rating --></label>
         <name>Total_Rating__c</name>
     </fields>

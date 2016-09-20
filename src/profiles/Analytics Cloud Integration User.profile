@@ -13,7 +13,7 @@
     <applicationVisibilities>
         <application>Reviews</application>
         <default>false</default>
-        <visible>true</visible>
+        <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__AppLauncher</application>
@@ -1205,6 +1205,11 @@
         <editable>true</editable>
         <field>Employee_Review__c.Reviewer__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Employee_Review__c.Title__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2714,6 +2719,10 @@
     <tabVisibilities>
         <tab>Quickstart</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Reviews</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>SFDC_Service_Timecard__c</tab>

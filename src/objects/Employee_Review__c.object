@@ -18,7 +18,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <content>employee_review_vfp</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -1094,6 +1096,28 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Team_Review__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Team Review?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Total_Rating__c</fullName>
         <externalId>false</externalId>
         <formula>(value(text(Rating_1__c)) + value(text(Rating_2__c)) + value(text(Rating_3__c)) + value(text(Rating_4__c)) + value(text(Rating_5__c)) + value(text(Rating_6__c)) + value(text(Rating_7__c)) + value(text(Rating_8__c)) + value(text(Rating_9__c)) + value(text(Rating_10__c)) + value(text(Rating_11__c)))/(if(text(Rating_1__c)=&quot;0&quot;,0,1)+if(text(Rating_2__c)=&quot;0&quot;,0,1)+if(text(Rating_3__c)=&quot;0&quot;,0,1)+if(text(Rating_4__c)=&quot;0&quot;,0,1)+if(text(Rating_5__c)=&quot;0&quot;,0,1)+if(text(Rating_6__c)=&quot;0&quot;,0,1)+if(text(Rating_7__c)=&quot;0&quot;,0,1)+if(text(Rating_8__c)=&quot;0&quot;,0,1)+if(text(Rating_9__c)=&quot;0&quot;,0,1)+if(text(Rating_10__c)=&quot;0&quot;,0,1)+if(text(Rating_11__c)=&quot;0&quot;,0,1))</formula>
@@ -1124,6 +1148,10 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Employee Reviews</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Employee_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Group__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Rev_Manager__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

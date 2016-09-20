@@ -1,10 +1,24 @@
 public class ratingsOptions {
 public Employee_Review__c empRev;
+public Employee__c emp{get; set;}
 ApexPages.StandardController con;
 public ratingsOptions(ApexPages.StandardController controller) {
     con = controller;   
     empRev = (Employee_Review__c)con.getRecord();
-    }
+   List <Employee__c> emps = [ SELECT Name, First_Name__c, Last_Name__c, Group__c, Title__c, Rank_Date__c, Hire_Date__c, Project_Hours__c, Project_Name__c, Project_Number__c FROM Employee__c WHERE Id =: empRev.Employee_ID__c];
+        for(Employee__c empT : emps){
+            emp = empT;
+            system.debug('EmpID: ' + emp.Name);
+        }
+    if(empRev.Review_Type__c == null){
+   	 if(emp.Group__c=='IT'){
+        	empRev.Review_Type__c = 'Enterprise Project Review';
+    	}else{
+        	empRev.Review_Type__c = 'Project Review';
+    	}
+   	 }
+   }
+
 //sync test
     String rating = null;
     Integer ratingNum = 0;
@@ -14,7 +28,16 @@ public ratingsOptions(ApexPages.StandardController controller) {
     public PageReference test() {
         return null;
     }
-     
+    
+    public PageReference readEmp(){
+      system.debug('EmpID: ' + empRev.Employee_ID__c);
+        List <Employee__c> emps = [ SELECT Name, First_Name__c, Last_Name__c, Group__c, Title__c, Rank_Date__c, Hire_Date__c, Project_Hours__c, Project_Name__c, Project_Number__c FROM Employee__c WHERE Id =: empRev.Employee_ID__c];
+        for(Employee__c empT : emps){
+            emp = empT;
+            system.debug('EmpID: ' + emp.Name);
+        }
+        return null; 
+    }
                 
     public List<SelectOption> getItems() {
         system.debug('rev: ' + empRev.Review_Type__c);

@@ -10,4 +10,6 @@
     <tab>standard-report</tab>
     <tab>Quick_Account</tab>
     <tab>New_Customer</tab>
+    <tab>standard-File</tab>
+    <tab>Quickstart</tab>
 </CustomApplication>

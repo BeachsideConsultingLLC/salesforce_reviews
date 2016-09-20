@@ -1192,6 +1192,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Employee_Review__c.Title__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Employee_Review__c.Total_Rating__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2229,6 +2234,10 @@
     </tabSettings>
     <tabSettings>
         <tab>Quickstart</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Reviews</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

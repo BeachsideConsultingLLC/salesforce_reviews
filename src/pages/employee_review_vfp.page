@@ -137,6 +137,9 @@
       <div class="bsc-light-blue bsc-container bsc-quarter">
           <label for = "teamreview"><h5 class="bsc-text-shadow">Team Review?</h5></label>         
       </div>
+      <div class="bsc-container bsc-quarter   bsc-light-grey" >  
+        <apex:inputField value="{!Employee_Review__c.Team_Review__c}" id="teamreview" styleClass="bsc-check"/>&nbsp; Yes
+      </div>
    </div> 
    <div class="bsc-row bsc-light-grey bsc-border">
       <div class="bsc-light-blue bsc-container bsc-quarter">
