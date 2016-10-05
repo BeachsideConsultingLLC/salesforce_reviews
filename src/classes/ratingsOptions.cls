@@ -5,8 +5,10 @@ public Employee__c emp{get; set;}
 public String catval {get; set;}
 public List<Integer> rats;
 public String currentRecordId {get;set;}
+public Boolean showContent { get; set; }
 ApexPages.StandardController con;
 public ratingsOptions(ApexPages.StandardController controller) {
+    showContent = true;
     con = controller;   
     empRev = (Employee_Review__c)con.getRecord();
    List <Employee__c> emps = [ SELECT Name, First_Name__c, Last_Name__c, Group__c, Title__c, Rank_Date__c, Hire_Date__c, Project_Hours__c, Project_Name__c, Project_Number__c FROM Employee__c WHERE Id =: empRev.Employee_ID__c];
@@ -192,5 +194,14 @@ public ratingsOptions(ApexPages.StandardController controller) {
         system.debug(trats);
         return trats;
     }
-    
+public PageReference toggleContent() {
+		if(showContent){
+			showContent = false;
+			return null;
+		}else{
+			showContent = true;
+			return null;
+		}
+		return null;
+	}
 }

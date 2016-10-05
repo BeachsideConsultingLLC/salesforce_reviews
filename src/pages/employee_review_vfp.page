@@ -38,7 +38,7 @@
       <div class="bsc-container bsc-quarter  bsc-light-grey" >  
         <apex:inputField value="{!Employee_Review__c.Review_Type__c}" id="review__reviewtype" styleClass="bsc-select">
             <apex:actionSupport event="onchange"
-            rerender="ratings,overallrating"
+            rerender="comprow,overallrating"
             status="status"/>
          </apex:inputField>
        </div><div class=" bsc-rest" />
@@ -183,11 +183,11 @@
     <div>
     <apex:variable value="{!0}" var="rep" id="repcount"/>
     <apex:repeat value="{!iter}" var="cat" id="theRepeat" >
-		
+		<div id="repeattoshow" dim="{!cats[cat]}" style="display:block;">
         <apex:outputText value="{!cats[cat]}" id="theValue"/><br/>
       
         <apex:repeat value="{!comps[cat]}" var="comp" id="compRep">
-        	<apex:pageBlocksection title="{!comp}" id="comprow" columns="2">
+        	<apex:pageBlocksection title="{!comp}" id="comprow" columns="1">
         	<!--  
         	<apex:outputText value="{!rep}: "></apex:outputText>
         	<apex:outputText value="{!comp}" id="theRow"></apex:outputText>
@@ -199,12 +199,14 @@
            <br/>
          </apex:pageBlockSection>  
 		</apex:repeat>
-		<div class="bsc-container bsc-half bsc-light-grey" >
-    		<apex:pageBlocksection title="{!cats[cat]} Comments" id="compcomment" >
-    		<apex:inputTextArea id="comments" Richtext="true"/>
+		<div class="bsc-container bsc-light-grey" >
+    		<apex:pageBlocksection title="{!cats[cat]} Comments" id="compcomment">
+    		<apex:inputTextArea id="comments" Richtext="true" html-comid="{!cat}"/>
     		</apex:pageBlockSection>
     	</div>
-    </apex:repeat>          
+    	</div>
+    </apex:repeat> 
+             
     </div>
     </apex:pageBlock>
    </div> 
@@ -284,6 +286,25 @@
     <script>
   		
     	j$(document).ready(function(){
+    		var hidebus = function(rtype){
+        		var rdivs = j$("div[id$='repeattoshow']");
+        		var repType=rtype.options[rtype.selectedIndex].value;
+        		$log(repType);
+        		var dim=new String("");
+        		var r;
+        		for(r=0;r<rdivs.length;r++){
+        			$log(r + ":");
+        			dim = rdivs[r].getAttribute('dim');
+        			$log("div: " + dim + " - " + dim.charAt(0)+ " - "+ dim.length);
+        			if((dim.indexOf("Business")!=-1)&& repType=="Project Review"){
+        				$log("divhide: " + dim);
+        				rdivs[r].setAttribute('style','display:none');
+        			}else{
+        				$log("divshow: " + dim);
+        				rdivs[r].setAttribute('style','display:block');
+        			}
+        		}
+        	};
     		var rclick = function(rad){
     			var radioid=rad.getAttribute('radid');
     			$log(radioid);
@@ -316,7 +337,13 @@
     			rclick(this);
 				}
 			);
+    		j$("select[id$='review__reviewtype']").change(function(){
+    			hidebus(this);
+				}
+			);
+    		
     	});	
+    	
     </script>
   
 </apex:page>
