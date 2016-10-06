@@ -42,7 +42,20 @@
             status="status"/>
          </apex:inputField>
        </div><div class=" bsc-rest" />
-    </div> 
+    </div>
+    <div class="bsc-row bsc-light-grey bsc-border">
+      <div class=" bsc-half"><p></p></div>
+      <div class="bsc-light-blue bsc-container bsc-quarter">
+          <label><h5 class="bsc-text-shadow">Review Style</h5></label>         
+      </div>
+      <div class="bsc-container bsc-quarter  bsc-light-grey" >  
+        <apex:inputField value="{!Employee_Review__c.Review_Style__c}" id="review__reviewstyle" styleClass="bsc-select">
+            <apex:actionSupport event="onchange"
+            rerender=""
+            status="status"/>
+         </apex:inputField>
+       </div><div class=" bsc-rest" />
+    </div>  
    <div class="bsc-container bsc-section bsc-border bsc-round-xlarge bsc-text-red bsc-white bsc-border bsc-padding-8">
       <p><h5 class="bsc-text-shadow">Employee Information</h5></p>
      <div class="bsc-row bsc-light-grey bsc-border">
