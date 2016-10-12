@@ -17,12 +17,14 @@ public ratingsOptions(ApexPages.StandardController controller) {
             system.debug('EmpID: ' + emp.Name);
         }
     if(empRev.Review_Type__c == null){
+   	if(empRev.Employee_ID__c != null) {
    	 if(emp.Group__c=='IT'){
         	empRev.Review_Type__c = 'Enterprise Project Review';
     	}else{
         	empRev.Review_Type__c = 'Project Review';
     	}
    	 }
+    }
    	 currentRecordId  = ApexPages.CurrentPage().getparameters().get('id');
    	 if(empRev.Employee_ID__c!=null){
    	 	List<String> fields = new List<String>(Employee_Review__c.SObjectType.getDescribe().fields.getMap().keySet());
@@ -52,14 +54,20 @@ public ratingsOptions(ApexPages.StandardController controller) {
      
     public PageReference readEmp(){
       system.debug('EmpID: ' + empRev.Employee_ID__c);
-        List <Employee__c> emps = [ SELECT Name, First_Name__c, Last_Name__c, Group__c, Title__c, Rank_Date__c, Hire_Date__c, Project_Hours__c, Project_Name__c, Project_Number__c FROM Employee__c WHERE Id =: empRev.Employee_ID__c];
+        List <Employee__c> emps = [ SELECT Name, First_Name__c, Last_Name__c, Group__c, Title__c, Rank_Date__c, Hire_Date__c, Project_Hours__c, Project_Name__c, Project_Number__c, Emp_Image__c FROM Employee__c WHERE Id =: empRev.Employee_ID__c];
         for(Employee__c empT : emps){
             emp = empT;
             system.debug('EmpID: ' + emp.Name);
         }
         return null; 
     }
-              
+    public PageReference readReviewer(){
+    	system.debug('Reviewer: ' + empRev.Reviewer__c);
+    	List <User> reviewer = [ SELECT Id, EmployeeNumber FROM User WHERE Name =: empRev.Reviewer__c];
+          
+    	return null; 
+    
+    }     
     public List<SelectOption> getItems() {
         system.debug('rev: ' + empRev.Review_Type__c);
         List<SelectOption> options = new List<SelectOption>(); 
@@ -178,7 +186,8 @@ public ratingsOptions(ApexPages.StandardController controller) {
     	String tempField = '';
     	for (Integer x=1; x<= ratingNum; x++){
          	tempField = 'Rating_' + string.valueof(x) + '__c';
-            if(hasSObjectField(tempField,empRevData)) {
+         	
+            if(empRevData!=null && hasSObjectField(tempField,empRevData)) {
                 system.debug(tempField + ': ' + empRevData.get(tempField));
                 if(empRevData.get(tempField)==null) {
                     trats.add(0);
@@ -194,6 +203,28 @@ public ratingsOptions(ApexPages.StandardController controller) {
         system.debug(trats);
         return trats;
     }
+    
+    public List<String> getTextItems(){
+    	List<String> txtrats = new List<String>();
+    	for (Integer x=1; x<= ratingNum; x++){
+         	tempField = 'Text_Rating_' + string.valueof(x) + '__c';
+            if(empRevData!=null && hasSObjectField(tempField,empRevData)) {
+                system.debug(tempField + ': ' + empRevData.get(tempField));
+                if(empRevData.get(tempField)==null) {
+                    txtrats.add('');
+                }else{
+                	String tval = (String)empRevData.get(tempField);
+                    txtrats.add(tval);
+                   system.debug(tval);
+                }
+             }else{
+                 txtrats.add('');
+                 system.debug(tempField + ': Does not exist - TextRating set up');
+             }
+        }
+        system.debug(txtrats);
+        return txtrats;
+    }   
 public PageReference toggleContent() {
 		if(showContent){
 			showContent = false;

@@ -12,6 +12,12 @@
 		}
 	}
     </script>
+    <style>
+    	textarea {
+    	width: 600px; 
+    	height: 90px;
+    	}
+    </style>
      <apex:form styleClass="bsc-container">
      <apex:pageBlock mode="edit" id="thePageBlock">
      <apex:pageBlockButtons >
@@ -20,6 +26,7 @@
 	</apex:pageBlockButtons>
      	
    <div class="bsc-container bsc-section bsc-border bsc-round-xlarge bsc-text-red bsc-white bsc-border bsc-padding-8">
+     <apex:outputPanel id="reviewtitle">
       <p><h3 class="bsc-text-shadow">Employee Review&nbsp;-&nbsp;<apex:outputField value="{!Employee_Review__c.Review_Type__c}" /></h3></p>
      <div class="bsc-row bsc-light-grey bsc-border">
       <div class="bsc-light-blue bsc-container bsc-quarter">
@@ -30,6 +37,7 @@
           (<apex:outputField value="{!emp.Project_Number__c}" id="projectnumber" />)</h5>
         </div>
      </div>
+     </apex:outputPanel>
      <div class="bsc-row bsc-light-grey bsc-border">
       <div class=" bsc-half"><p></p></div>
       <div class="bsc-light-blue bsc-container bsc-quarter">
@@ -62,14 +70,19 @@
       <div class="bsc-light-blue bsc-container bsc-quarter bsc-padding-4">
           <label for = "employeeID"><h6 class="bsc-text-shadow ">Employee ID</h6> </label>
       </div>
-      <div class="bsc-container bsc-third   bsc-light-grey" >
+      <div class="bsc-container bsc-quarter   bsc-light-grey" >
         <apex:inputField value="{!Employee_Review__c.Employee_ID__c}" id="employeeID" styleClass="bsc-select">
         <apex:actionSupport event="onchange"
             action="{!readEmp}"
-            rerender="empdetails"
+            rerender="empdetails,reviewtitle,empphoto"
             status="status"/>
          </apex:inputField>
-     </div><div class=" bsc-rest" />
+     </div>
+     <apex:outputPanel id="empphoto">
+     <div class=" bsc-rest" style="padding-left: 50px;">
+     	<apex:outputField value="{!emp.Emp_Image__c}" id="employeePhoto" />
+     </div>
+     </apex:outputPanel>
    </div>
    <apex:outputPanel id="empdetails">
    <div class="bsc-row bsc-light-grey bsc-border">
@@ -85,7 +98,12 @@
           <label><h5 class="bsc-text-shadow">Reviewed By</h5></label>         
       </div>
       <div class="bsc-container bsc-quarter   bsc-light-grey" style="padding-right: 30px;">  
-        <apex:inputField value="{!Employee_Review__c.Reviewer__c}" id="reviewer" styleClass="bsc-select"/>
+        <apex:inputField value="{!Employee_Review__c.Reviewer__c}" id="reviewer" styleClass="bsc-select">
+      		<apex:actionSupport event="onchange"
+      		action="{!readReviewer}"
+            rerender="revphoto"
+            status="status"/>
+           </apex:inputField>
       </div>
    
    </div>
@@ -97,6 +115,16 @@
       <div class="bsc-container bsc-quarter   bsc-light-grey" >  
         <apex:outputField value="{!emp.Group__c}" id="group" />
       </div>
+      <div class="bsc-container bsc-quarter   bsc-light-grey" >  
+        <p></p>
+      </div>
+      
+      <div class=" bsc-rest" >
+      <apex:outputPanel id="revphoto">
+     	<apex:outputField value="{!Employee_Review__c.Reviewer_Photo__c}" id="reviewerPhoto" />
+     </apex:outputPanel>
+     </div>
+     
     </div>
    <div class="bsc-row bsc-light-grey bsc-border">
       <div class="bsc-light-blue bsc-container bsc-quarter">
@@ -196,11 +224,13 @@
     <div>
     <apex:variable value="{!0}" var="rep" id="repcount"/>
     <apex:repeat value="{!iter}" var="cat" id="theRepeat" >
+		
 		<div id="repeattoshow" dim="{!cats[cat]}" style="display:block;">
         <apex:outputText value="{!cats[cat]}" id="theValue"/><br/>
       
         <apex:repeat value="{!comps[cat]}" var="comp" id="compRep">
-        	<apex:pageBlocksection title="{!comp}" id="comprow" columns="1">
+        	<apex:pageBlocksection title="{!comp}" id="comprow" columns="1" 
+        		>
         	<!--  
         	<apex:outputText value="{!rep}: "></apex:outputText>
         	<apex:outputText value="{!comp}" id="theRow"></apex:outputText>
@@ -208,19 +238,32 @@
         	<apex:selectRadio value="{!rats[rep]}" id="rating_" >
             <apex:selectOptions value="{!items}" html-radid="{!rep+1}"/>
           </apex:selectRadio>
-           <apex:variable var="rep" value="{!rep+1}"/>	 
+           <!-- <apex:variable var="rep" value="{!rep+1}"/>	 -->
+           <br/>
+         </apex:pageBlockSection>
+         
+         <apex:pageBlocksection title="{!comp}" id="comptext" columns="1"
+         	>
+         	<div class="bsc-container bsc-light-grey" >
+         	<apex:inputTextArea value="{!textitems[rep]}" id="textrating_" html-txtid="{!rep+1}" ></apex:inputTextArea>
+         	</div>
+         <!-- <apex:variable var="rep" value="{!rep+1}"/>	 -->
            <br/>
          </apex:pageBlockSection>  
+          <apex:variable var="rep" value="{!rep+1}"/>	
 		</apex:repeat>
+		
 		<div class="bsc-container bsc-light-grey" >
     		<apex:pageBlocksection title="{!cats[cat]} Comments" id="compcomment">
     		<apex:inputTextArea id="comments" Richtext="true" html-comid="{!cat}"/>
     		</apex:pageBlockSection>
     	</div>
     	</div>
+    	
     </apex:repeat> 
-             
+            
     </div>
+    
     </apex:pageBlock>
    </div> 
     <apex:commandButton value="Test" action="{!test}" rerender="out" status="status"/> 
@@ -295,10 +338,78 @@
  		<apex:inputHidden value="{!Employee_Review__c.Rating_24__c}" id="hr24"/>
  		<apex:inputHidden value="{!Employee_Review__c.Rating_25__c}" id="hr25"/>
  	</div>
+ 	<div>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_1__c}" id="txtr1"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_2__c}" id="txtr2"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_3__c}" id="txtr3"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_4__c}" id="txtr4"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_5__c}" id="txtr5"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_6__c}" id="txtr6"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_7__c}" id="txtr7"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_8__c}" id="txtr8"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_9__c}" id="txtr9"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_10__c}" id="txtr10"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_11__c}" id="txtr11"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_12__c}" id="txtr12"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_13__c}" id="txtr13"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_14__c}" id="txtr14"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_15__c}" id="txtr15"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_16__c}" id="txtr16"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_17__c}" id="txtr17"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_18__c}" id="txtr18"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_19__c}" id="txtr19"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_20__c}" id="txtr20"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_21__c}" id="txtr21"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_22__c}" id="txtr22"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_23__c}" id="txtr23"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_24__c}" id="txtr24"/>
+ 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_25__c}" id="txtr25"/>
+ 	</div>
     </apex:form>
     <script>
   		
     	j$(document).ready(function(){
+    		var changestyle = function(ratstyle){
+    			$log(ratstyle.val());
+    			var revStyle = ratstyle.val();
+    			//change  to text ratings
+    			if(revStyle == "Text"){
+    				$log("Text Mode");
+    				j$("div[id$='comptext']").css("display","block");
+    				j$("div[id$='comprow']").css("display","none");
+    			}
+    			//change to radio button ratings
+    			
+				if(revStyle == "Numeric"){
+					$log("Numeric Mode");
+    				j$("div[id$='comptext']").css("display","none");
+    				j$("div[id$='comprow']").css("display","block");
+    			}
+    			
+    			
+    			
+    		};
+    		var txtchange = function(txtfield){
+    			$log(txtfield.getAttribute('txtid') + " - " + txtfield.value);
+    			var betxtid = "txtr" + txtfield.getAttribute('txtid');
+    			var hiddenElements = j$( "body" ).find( ":hidden" ).not( "script" );
+    			for(he in hiddenElements){
+    				$log("h: " + hiddenElements.length);
+    				if((hiddenElements[he].getAttribute('id'))!=null){
+    					if((hiddenElements[he].getAttribute('id')).indexOf(betxtid)>0){
+    						if((hiddenElements[he].getAttribute('id')).substring((hiddenElements[he].getAttribute('id')).indexOf(betxtid))== betxtid){
+    							$log(hiddenElements[he].getAttribute('id'));
+        						betxtfield = hiddenElements[he];
+        						$log("old Val: " + betxtfield.value);
+        						betxtfield.value = txtfield.value;
+        		    			$log("new Val: " + betxtfield.value);
+        		    			
+        						break;	
+    						}
+    					}
+    				}
+    			}
+    		};
     		var hidebus = function(rtype){
         		var rdivs = j$("div[id$='repeattoshow']");
         		var repType=rtype.options[rtype.selectedIndex].value;
@@ -334,18 +445,26 @@
     			for(he in hiddenElements){
     				if((hiddenElements[he].getAttribute('id'))!=null){
     					if((hiddenElements[he].getAttribute('id')).indexOf(beid)>0){
-    						$log(hiddenElements[he].getAttribute('id'));
-    						beField = hiddenElements[he];
-    						$log("old Val: " + beField.value);
-    						beField.value = radval;
-    		    			$log("new Val: " + beField.value);
+    						if((hiddenElements[he].getAttribute('id')).substring((hiddenElements[he].getAttribute('id')).indexOf(beid))== beid){
+	    							
+	    						$log(hiddenElements[he].getAttribute('id'));
+	    						beField = hiddenElements[he];
+	    						$log("old Val: " + beField.value);
+	    						beField.value = radval;
+	    		    			$log("new Val: " + beField.value);
     		    			
-    						break;
+    							break;
+    						}
     					}
     				}
     			}
     			
     		};
+    		//show/hide radio or text rows
+    		var rstyle = j$("select[id$='reviewstyle']");
+    		$log("Onload Review Style: "+ rstyle.val());
+    		changestyle(rstyle);
+    		
     		j$("input:radio").click(function(){
     			rclick(this);
 				}
@@ -354,7 +473,16 @@
     			hidebus(this);
 				}
 			);
-    		
+    		j$("select[id$='reviewstyle']").change(function(){
+    			rstyle = j$("select[id$='reviewstyle']");
+        		$log("OnChange Review Style: "+ rstyle.val());
+        		changestyle(rstyle);;
+				}
+			);
+    		j$("textarea[id$='textrating_']").change(function(){
+    			txtchange(this);
+				}
+			);
     	});	
     	
     </script>
