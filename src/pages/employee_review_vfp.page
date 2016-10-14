@@ -1,30 +1,57 @@
-<apex:page standardController="Employee_Review__c" showHeader="true" standardStylesheets="true" extensions="ratingsOptions">
+<apex:page standardController="Employee_Review__c" showHeader="true" standardStylesheets="true" extensions="ratingsOptions,userPopup">
     <apex:stylesheet value="{!$Resource.BCSStyle}" />
     <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
     
     <script>
   //console logging
-	j$ = jQuery.noConflict();
+    j$ = jQuery.noConflict();
   var $log=function(){
-	var logdate=new Date();
-	if (typeof console=="object" && console.log){
-		console.info(logdate.toLocaleTimeString()+": " + arguments[0]);
-		}
-	}
+    var logdate=new Date();
+    if (typeof console=="object" && console.log){
+        console.info(logdate.toLocaleTimeString()+": " + arguments[0]);
+        }
+    }
     </script>
-    <style>
-    	textarea {
-    	width: 600px; 
-    	height: 90px;
-    	}
+    <style type="text/css">
+        .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: relative;
+            /* These are the 3 css properties you will need to change so the popup 
+            displays in the center of the screen. First set the width. Then set 
+            margin-left to negative half of what the width is. You can add 
+            the height property for a fixed size pop up if you want.*/
+            width: 500px;
+            margin-left: -250px;
+            top:-10px;
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 2000px;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+        textarea {
+        width: 600px; 
+        height: 90px;
+        }
     </style>
      <apex:form styleClass="bsc-container">
      <apex:pageBlock mode="edit" id="thePageBlock">
      <apex:pageBlockButtons >
-     	<apex:commandButton value="Save" action="{!save}" id="saveButton" styleClass="bsc-btn  bsc-border bsc-round"/>
-		<apex:commandButton value="Cancel" action="{!cancel}" id="cancelButton" styleClass="bsc-btn  bsc-border bsc-round" />
-	</apex:pageBlockButtons>
-     	
+        <apex:commandButton value="Save" action="{!save}" id="saveButton" styleClass="bsc-btn  bsc-border bsc-round"/>
+        <apex:commandButton value="Cancel" action="{!cancel}" id="cancelButton" styleClass="bsc-btn  bsc-border bsc-round" />
+    </apex:pageBlockButtons>
+        
    <div class="bsc-container bsc-section bsc-border bsc-round-xlarge bsc-text-red bsc-white bsc-border bsc-padding-8">
      <apex:outputPanel id="reviewtitle">
       <p><h3 class="bsc-text-shadow">Employee Review&nbsp;-&nbsp;<apex:outputField value="{!Employee_Review__c.Review_Type__c}" /></h3></p>
@@ -80,7 +107,7 @@
      </div>
      <apex:outputPanel id="empphoto">
      <div class=" bsc-rest" style="padding-left: 50px;">
-     	<apex:outputField value="{!emp.Emp_Image__c}" id="employeePhoto" />
+        <apex:outputField value="{!emp.Emp_Image__c}" id="employeePhoto" />
      </div>
      </apex:outputPanel>
    </div>
@@ -99,8 +126,8 @@
       </div>
       <div class="bsc-container bsc-quarter   bsc-light-grey" style="padding-right: 30px;">  
         <apex:inputField value="{!Employee_Review__c.Reviewer__c}" id="reviewer" styleClass="bsc-select">
-      		<apex:actionSupport event="onchange"
-      		action="{!readReviewer}"
+            <apex:actionSupport event="onchange"
+            action="{!readReviewer}"
             rerender="revphoto"
             status="status"/>
            </apex:inputField>
@@ -121,7 +148,7 @@
       
       <div class=" bsc-rest" >
       <apex:outputPanel id="revphoto">
-		<apex:image value="{!revImg}" id="reviewerPhoto" height="100" width="100"/>
+        <apex:image value="{!revImg}" id="reviewerPhoto" height="100" width="100"/>
      </apex:outputPanel>
      </div>
      
@@ -185,7 +212,7 @@
       <div class="bsc-container bsc-quarter   bsc-light-grey" >  
         <apex:inputField value="{!Employee_Review__c.Degree_of_Contact__c}" id="degree" styleClass="bsc-select"/>
       </div>
-	</div> 
+    </div> 
    <div class="bsc-row bsc-light-grey bsc-border">
       <div class="bsc-light-blue bsc-container bsc-quarter">
           <label for = "teamreview"><h5 class="bsc-text-shadow">Team Review?</h5></label>         
@@ -194,6 +221,26 @@
         <apex:inputField value="{!Employee_Review__c.Team_Review__c}" id="teamreview" styleClass="bsc-check"/>&nbsp; Yes
       </div>
    </div> 
+   <div class="bsc-row bsc-light-grey bsc-border">
+   		<div class="bsc-light-blue bsc-container bsc-quarter">
+          	<label for = "addreviewers"><h5 class="bsc-text-shadow">Additional Reviewers</h5></label>         
+      	</div>
+      	<div class="bsc-container bsc-quarter   bsc-light-grey" >  
+         </div>
+         <div class=" bsc-rest" >
+         	 <apex:commandButton value="Select User" action="{!showPopup}" rerender="userpopup"/>
+         </div>
+   </div> 
+   
+        
+        <apex:outputPanel id="userpopup">
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+            <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">
+                This is where I would put whatever information I needed to show to my end user.<br/><br/><br/>
+                <apex:commandButton value="Hide Pop up" action="{!closePopup}" rerender="userpopup"/>
+            </apex:outputPanel>
+        </apex:outputPanel>
+
    <div class="bsc-row bsc-light-grey bsc-border">
       <div class="bsc-light-blue bsc-container bsc-quarter">
           <label for = "contribution"><h5 class="bsc-text-shadow">Briefly describe what this person contributed to the project</h5></label>         
@@ -224,42 +271,42 @@
     <div>
     <apex:variable value="{!0}" var="rep" id="repcount"/>
     <apex:repeat value="{!iter}" var="cat" id="theRepeat" >
-		
-		<div id="repeattoshow" dim="{!cats[cat]}" style="display:block;">
+        
+        <div id="repeattoshow" dim="{!cats[cat]}" style="display:block;">
         <apex:outputText value="{!cats[cat]}" id="theValue"/><br/>
       
         <apex:repeat value="{!comps[cat]}" var="comp" id="compRep">
-        	<apex:pageBlocksection title="{!comp}" id="comprow" columns="1" 
-        		>
-        	<!--  
-        	<apex:outputText value="{!rep}: "></apex:outputText>
-        	<apex:outputText value="{!comp}" id="theRow"></apex:outputText>
-        	-->
-        	<apex:selectRadio value="{!rats[rep]}" id="rating_" >
+            <apex:pageBlocksection title="{!comp}" id="comprow" columns="1" 
+                >
+            <!--  
+            <apex:outputText value="{!rep}: "></apex:outputText>
+            <apex:outputText value="{!comp}" id="theRow"></apex:outputText>
+            -->
+            <apex:selectRadio value="{!rats[rep]}" id="rating_" >
             <apex:selectOptions value="{!items}" html-radid="{!rep+1}"/>
           </apex:selectRadio>
-           <!-- <apex:variable var="rep" value="{!rep+1}"/>	 -->
+           <!-- <apex:variable var="rep" value="{!rep+1}"/>  -->
            <br/>
          </apex:pageBlockSection>
          
          <apex:pageBlocksection title="{!comp}" id="comptext" columns="1"
-         	>
-         	<div class="bsc-container bsc-light-grey" >
-         	<apex:inputTextArea value="{!textitems[rep]}" id="textrating_" html-txtid="{!rep+1}" ></apex:inputTextArea>
-         	</div>
-         <!-- <apex:variable var="rep" value="{!rep+1}"/>	 -->
+            >
+            <div class="bsc-container bsc-light-grey" >
+            <apex:inputTextArea value="{!textitems[rep]}" id="textrating_" html-txtid="{!rep+1}" ></apex:inputTextArea>
+            </div>
+         <!-- <apex:variable var="rep" value="{!rep+1}"/>    -->
            <br/>
          </apex:pageBlockSection>  
-          <apex:variable var="rep" value="{!rep+1}"/>	
-		</apex:repeat>
-		
-		<div class="bsc-container bsc-light-grey" >
-    		<apex:pageBlocksection title="{!cats[cat]} Comments" id="compcomment">
-    		<apex:inputTextArea id="comments" Richtext="true" html-comid="{!cat}"/>
-    		</apex:pageBlockSection>
-    	</div>
-    	</div>
-    	
+          <apex:variable var="rep" value="{!rep+1}"/>   
+        </apex:repeat>
+        
+        <div class="bsc-container bsc-light-grey" >
+            <apex:pageBlocksection title="{!cats[cat]} Comments" id="compcomment">
+            <apex:inputTextArea id="comments" Richtext="true" html-comid="{!cat}"/>
+            </apex:pageBlockSection>
+        </div>
+        </div>
+        
     </apex:repeat> 
             
     </div>
@@ -306,185 +353,185 @@
     
     </apex:pageBlock>
     <div class="bsc-row bsc-light-grey bsc-border">
-    	<div class="bsc-container bsc-half bsc-light-grey" >
-    		<label><h5 class="bsc-text-shadow">Overall Comments</h5></label> <p/>
-    		<apex:inputTextArea value="{!Employee_Review__c.Comments_Overall__c}" id="overallcomments" Richtext="true"/>
-    	</div>
- 	</div>
- 	<div>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_1__c}" id="hr1"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_2__c}" id="hr2"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_3__c}" id="hr3"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_4__c}" id="hr4"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_5__c}" id="hr5"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_6__c}" id="hr6"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_7__c}" id="hr7"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_8__c}" id="hr8"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_9__c}" id="hr9"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_10__c}" id="hr10"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_11__c}" id="hr11"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_12__c}" id="hr12"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_13__c}" id="hr13"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_14__c}" id="hr14"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_15__c}" id="hr15"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_16__c}" id="hr16"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_17__c}" id="hr17"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_18__c}" id="hr18"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_19__c}" id="hr19"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_20__c}" id="hr20"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_21__c}" id="hr21"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_22__c}" id="hr22"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_23__c}" id="hr23"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_24__c}" id="hr24"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Rating_25__c}" id="hr25"/>
- 	</div>
- 	<div>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_1__c}" id="txtr1"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_2__c}" id="txtr2"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_3__c}" id="txtr3"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_4__c}" id="txtr4"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_5__c}" id="txtr5"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_6__c}" id="txtr6"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_7__c}" id="txtr7"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_8__c}" id="txtr8"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_9__c}" id="txtr9"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_10__c}" id="txtr10"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_11__c}" id="txtr11"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_12__c}" id="txtr12"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_13__c}" id="txtr13"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_14__c}" id="txtr14"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_15__c}" id="txtr15"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_16__c}" id="txtr16"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_17__c}" id="txtr17"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_18__c}" id="txtr18"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_19__c}" id="txtr19"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_20__c}" id="txtr20"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_21__c}" id="txtr21"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_22__c}" id="txtr22"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_23__c}" id="txtr23"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_24__c}" id="txtr24"/>
- 		<apex:inputHidden value="{!Employee_Review__c.Text_Rating_25__c}" id="txtr25"/>
- 	</div>
+        <div class="bsc-container bsc-half bsc-light-grey" >
+            <label><h5 class="bsc-text-shadow">Overall Comments</h5></label> <p/>
+            <apex:inputTextArea value="{!Employee_Review__c.Comments_Overall__c}" id="overallcomments" Richtext="true"/>
+        </div>
+    </div>
+    <div>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_1__c}" id="hr1"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_2__c}" id="hr2"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_3__c}" id="hr3"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_4__c}" id="hr4"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_5__c}" id="hr5"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_6__c}" id="hr6"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_7__c}" id="hr7"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_8__c}" id="hr8"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_9__c}" id="hr9"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_10__c}" id="hr10"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_11__c}" id="hr11"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_12__c}" id="hr12"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_13__c}" id="hr13"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_14__c}" id="hr14"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_15__c}" id="hr15"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_16__c}" id="hr16"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_17__c}" id="hr17"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_18__c}" id="hr18"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_19__c}" id="hr19"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_20__c}" id="hr20"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_21__c}" id="hr21"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_22__c}" id="hr22"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_23__c}" id="hr23"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_24__c}" id="hr24"/>
+        <apex:inputHidden value="{!Employee_Review__c.Rating_25__c}" id="hr25"/>
+    </div>
+    <div>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_1__c}" id="txtr1"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_2__c}" id="txtr2"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_3__c}" id="txtr3"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_4__c}" id="txtr4"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_5__c}" id="txtr5"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_6__c}" id="txtr6"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_7__c}" id="txtr7"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_8__c}" id="txtr8"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_9__c}" id="txtr9"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_10__c}" id="txtr10"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_11__c}" id="txtr11"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_12__c}" id="txtr12"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_13__c}" id="txtr13"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_14__c}" id="txtr14"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_15__c}" id="txtr15"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_16__c}" id="txtr16"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_17__c}" id="txtr17"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_18__c}" id="txtr18"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_19__c}" id="txtr19"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_20__c}" id="txtr20"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_21__c}" id="txtr21"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_22__c}" id="txtr22"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_23__c}" id="txtr23"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_24__c}" id="txtr24"/>
+        <apex:inputHidden value="{!Employee_Review__c.Text_Rating_25__c}" id="txtr25"/>
+    </div>
     </apex:form>
     <script>
-  		
-    	j$(document).ready(function(){
-    		var changestyle = function(ratstyle){
-    			$log(ratstyle.val());
-    			var revStyle = ratstyle.val();
-    			//change  to text ratings
-    			if(revStyle == "Text"){
-    				$log("Text Mode");
-    				j$("div[id$='comptext']").css("display","block");
-    				j$("div[id$='comprow']").css("display","none");
-    			}
-    			//change to radio button ratings
-    			
-				if(revStyle == "Numeric"){
-					$log("Numeric Mode");
-    				j$("div[id$='comptext']").css("display","none");
-    				j$("div[id$='comprow']").css("display","block");
-    			}
-    			
-    			
-    			
-    		};
-    		var txtchange = function(txtfield){
-    			$log(txtfield.getAttribute('txtid') + " - " + txtfield.value);
-    			var betxtid = "txtr" + txtfield.getAttribute('txtid');
-    			var hiddenElements = j$( "body" ).find( ":hidden" ).not( "script" );
-    			for(he in hiddenElements){
-    				$log("h: " + hiddenElements.length);
-    				if((hiddenElements[he].getAttribute('id'))!=null){
-    					if((hiddenElements[he].getAttribute('id')).indexOf(betxtid)>0){
-    						if((hiddenElements[he].getAttribute('id')).substring((hiddenElements[he].getAttribute('id')).indexOf(betxtid))== betxtid){
-    							$log(hiddenElements[he].getAttribute('id'));
-        						betxtfield = hiddenElements[he];
-        						$log("old Val: " + betxtfield.value);
-        						betxtfield.value = txtfield.value;
-        		    			$log("new Val: " + betxtfield.value);
-        		    			
-        						break;	
-    						}
-    					}
-    				}
-    			}
-    		};
-    		var hidebus = function(rtype){
-        		var rdivs = j$("div[id$='repeattoshow']");
-        		var repType=rtype.options[rtype.selectedIndex].value;
-        		$log(repType);
-        		var dim=new String("");
-        		var r;
-        		for(r=0;r<rdivs.length;r++){
-        			$log(r + ":");
-        			dim = rdivs[r].getAttribute('dim');
-        			$log("div: " + dim + " - " + dim.charAt(0)+ " - "+ dim.length);
-        			if((dim.indexOf("Business")!=-1)&& repType=="Project Review"){
-        				$log("divhide: " + dim);
-        				rdivs[r].setAttribute('style','display:none');
-        			}else{
-        				$log("divshow: " + dim);
-        				rdivs[r].setAttribute('style','display:block');
-        			}
-        		}
-        	};
-    		var rclick = function(rad){
-    			var radioid=rad.getAttribute('radid');
-    			$log(radioid);
-    			var radval = rad.value;
-    			$log(radval);
-    			//var compRep = parseInt(radioid.substr(radioid.indexOf("compRep:")+8,1));
-    			$log("hr"+(radioid));
-    			//var radparentid = j$(table)
-    			var beid = "hr"+ (radioid);
-    			var beField = null;
-    			
-    			var hiddenElements = j$( "body" ).find( ":hidden" ).not( "script" );
-    			$log("h: " + hiddenElements.length);
-    			for(he in hiddenElements){
-    				if((hiddenElements[he].getAttribute('id'))!=null){
-    					if((hiddenElements[he].getAttribute('id')).indexOf(beid)>0){
-    						if((hiddenElements[he].getAttribute('id')).substring((hiddenElements[he].getAttribute('id')).indexOf(beid))== beid){
-	    							
-	    						$log(hiddenElements[he].getAttribute('id'));
-	    						beField = hiddenElements[he];
-	    						$log("old Val: " + beField.value);
-	    						beField.value = radval;
-	    		    			$log("new Val: " + beField.value);
-    		    			
-    							break;
-    						}
-    					}
-    				}
-    			}
-    			
-    		};
-    		//show/hide radio or text rows
-    		var rstyle = j$("select[id$='reviewstyle']");
-    		$log("Onload Review Style: "+ rstyle.val());
-    		changestyle(rstyle);
-    		
-    		j$("input:radio").click(function(){
-    			rclick(this);
-				}
-			);
-    		j$("select[id$='review__reviewtype']").change(function(){
-    			hidebus(this);
-				}
-			);
-    		j$("select[id$='reviewstyle']").change(function(){
-    			rstyle = j$("select[id$='reviewstyle']");
-        		$log("OnChange Review Style: "+ rstyle.val());
-        		changestyle(rstyle);;
-				}
-			);
-    		j$("textarea[id$='textrating_']").change(function(){
-    			txtchange(this);
-				}
-			);
-    	});	
-    	
+        
+        j$(document).ready(function(){
+            var changestyle = function(ratstyle){
+                $log(ratstyle.val());
+                var revStyle = ratstyle.val();
+                //change  to text ratings
+                if(revStyle == "Text"){
+                    $log("Text Mode");
+                    j$("div[id$='comptext']").css("display","block");
+                    j$("div[id$='comprow']").css("display","none");
+                }
+                //change to radio button ratings
+                
+                if(revStyle == "Numeric"){
+                    $log("Numeric Mode");
+                    j$("div[id$='comptext']").css("display","none");
+                    j$("div[id$='comprow']").css("display","block");
+                }
+                
+                
+                
+            };
+            var txtchange = function(txtfield){
+                $log(txtfield.getAttribute('txtid') + " - " + txtfield.value);
+                var betxtid = "txtr" + txtfield.getAttribute('txtid');
+                var hiddenElements = j$( "body" ).find( ":hidden" ).not( "script" );
+                for(he in hiddenElements){
+                    $log("h: " + hiddenElements.length);
+                    if((hiddenElements[he].getAttribute('id'))!=null){
+                        if((hiddenElements[he].getAttribute('id')).indexOf(betxtid)>0){
+                            if((hiddenElements[he].getAttribute('id')).substring((hiddenElements[he].getAttribute('id')).indexOf(betxtid))== betxtid){
+                                $log(hiddenElements[he].getAttribute('id'));
+                                betxtfield = hiddenElements[he];
+                                $log("old Val: " + betxtfield.value);
+                                betxtfield.value = txtfield.value;
+                                $log("new Val: " + betxtfield.value);
+                                
+                                break;  
+                            }
+                        }
+                    }
+                }
+            };
+            var hidebus = function(rtype){
+                var rdivs = j$("div[id$='repeattoshow']");
+                var repType=rtype.options[rtype.selectedIndex].value;
+                $log(repType);
+                var dim=new String("");
+                var r;
+                for(r=0;r<rdivs.length;r++){
+                    $log(r + ":");
+                    dim = rdivs[r].getAttribute('dim');
+                    $log("div: " + dim + " - " + dim.charAt(0)+ " - "+ dim.length);
+                    if((dim.indexOf("Business")!=-1)&& repType=="Project Review"){
+                        $log("divhide: " + dim);
+                        rdivs[r].setAttribute('style','display:none');
+                    }else{
+                        $log("divshow: " + dim);
+                        rdivs[r].setAttribute('style','display:block');
+                    }
+                }
+            };
+            var rclick = function(rad){
+                var radioid=rad.getAttribute('radid');
+                $log(radioid);
+                var radval = rad.value;
+                $log(radval);
+                //var compRep = parseInt(radioid.substr(radioid.indexOf("compRep:")+8,1));
+                $log("hr"+(radioid));
+                //var radparentid = j$(table)
+                var beid = "hr"+ (radioid);
+                var beField = null;
+                
+                var hiddenElements = j$( "body" ).find( ":hidden" ).not( "script" );
+                $log("h: " + hiddenElements.length);
+                for(he in hiddenElements){
+                    if((hiddenElements[he].getAttribute('id'))!=null){
+                        if((hiddenElements[he].getAttribute('id')).indexOf(beid)>0){
+                            if((hiddenElements[he].getAttribute('id')).substring((hiddenElements[he].getAttribute('id')).indexOf(beid))== beid){
+                                    
+                                $log(hiddenElements[he].getAttribute('id'));
+                                beField = hiddenElements[he];
+                                $log("old Val: " + beField.value);
+                                beField.value = radval;
+                                $log("new Val: " + beField.value);
+                            
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+            };
+            //show/hide radio or text rows
+            var rstyle = j$("select[id$='reviewstyle']");
+            $log("Onload Review Style: "+ rstyle.val());
+            changestyle(rstyle);
+            
+            j$("input:radio").click(function(){
+                rclick(this);
+                }
+            );
+            j$("select[id$='review__reviewtype']").change(function(){
+                hidebus(this);
+                }
+            );
+            j$("select[id$='reviewstyle']").change(function(){
+                rstyle = j$("select[id$='reviewstyle']");
+                $log("OnChange Review Style: "+ rstyle.val());
+                changestyle(rstyle);;
+                }
+            );
+            j$("textarea[id$='textrating_']").change(function(){
+                txtchange(this);
+                }
+            );
+        }); 
+        
     </script>
   
 </apex:page>
