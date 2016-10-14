@@ -45,10 +45,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -411,6 +407,7 @@ IMAGE(&quot;/img/samples/stars_000.gif&quot;,&apos;0 stars&apos;))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -433,6 +430,7 @@ IMAGE(&quot;/img/samples/stars_000.gif&quot;,&apos;0 stars&apos;))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>

@@ -46,7 +46,7 @@
       <div class="bsc-container bsc-quarter  bsc-light-grey" >  
         <apex:inputField value="{!Employee_Review__c.Review_Type__c}" id="review__reviewtype" styleClass="bsc-select">
             <apex:actionSupport event="onchange"
-            rerender="comprow,overallrating"
+            rerender="comprow,overallrating,reviewtitle"
             status="status"/>
          </apex:inputField>
        </div><div class=" bsc-rest" />
@@ -121,7 +121,7 @@
       
       <div class=" bsc-rest" >
       <apex:outputPanel id="revphoto">
-     	<apex:outputField value="{!Employee_Review__c.Reviewer_Photo__c}" id="reviewerPhoto" />
+		<apex:image value="{!revImg}" id="reviewerPhoto" height="100" width="100"/>
      </apex:outputPanel>
      </div>
      

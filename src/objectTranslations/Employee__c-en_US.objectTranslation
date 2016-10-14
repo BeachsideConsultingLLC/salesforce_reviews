@@ -9,6 +9,10 @@
         <value>Employees</value>
     </caseValues>
     <fields>
+        <label><!-- Employee Photo --></label>
+        <name>Emp_Image__c</name>
+    </fields>
+    <fields>
         <label><!-- First Name --></label>
         <name>First_Name__c</name>
     </fields>

@@ -14,6 +14,30 @@
         <name>Additional_Project_Codes__c</name>
     </fields>
     <fields>
+        <label><!-- Comments 1 --></label>
+        <name>Comments_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments 2 --></label>
+        <name>Comments_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments 3 --></label>
+        <name>Comments_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments 4 --></label>
+        <name>Comments_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments 5 --></label>
+        <name>Comments_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overall Comments --></label>
+        <name>Comments_Overall__c</name>
+    </fields>
+    <fields>
         <label><!-- Contribution --></label>
         <name>Contribution__c</name>
     </fields>
@@ -41,6 +65,10 @@
     <fields>
         <label><!-- Employee Name --></label>
         <name>Employee_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Photo --></label>
+        <name>Employee_Photo__c</name>
     </fields>
     <fields>
         <label><!-- First Name --></label>
@@ -180,8 +208,624 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Rating 12 --></label>
+        <name>Rating_12__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 13 --></label>
+        <name>Rating_13__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 14 --></label>
+        <name>Rating_14__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 15 --></label>
+        <name>Rating_15__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 16 --></label>
+        <name>Rating_16__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 17 --></label>
+        <name>Rating_17__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 18 --></label>
+        <name>Rating_18__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 19 --></label>
+        <name>Rating_19__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Rating 1 --></label>
         <name>Rating_1__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 20 --></label>
+        <name>Rating_20__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 21 --></label>
+        <name>Rating_21__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 22 --></label>
+        <name>Rating_22__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 23 --></label>
+        <name>Rating_23__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 24 --></label>
+        <name>Rating_24__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rating 25 --></label>
+        <name>Rating_25__c</name>
         <picklistValues>
             <masterLabel>0</masterLabel>
             <translation><!-- 0 --></translation>
@@ -589,6 +1233,22 @@
         <name>Review_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Review Style --></label>
+        <name>Review_Style__c</name>
+        <picklistValues>
+            <masterLabel>Numeric</masterLabel>
+            <translation><!-- Numeric --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Numeric and Text</masterLabel>
+            <translation><!-- Numeric and Text --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Text</masterLabel>
+            <translation><!-- Text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Review Type --></label>
         <name>Review_Type__c</name>
         <picklistValues>
@@ -601,9 +1261,142 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Reviewer Photo --></label>
+        <name>Reviewer_Photo__c</name>
+    </fields>
+    <fields>
         <label><!-- Reviewer --></label>
         <name>Reviewer__c</name>
         <relationshipLabel><!-- Employee Reviews (Reviewer) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Team Review? --></label>
+        <name>Team_Review__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_10 --></label>
+        <name>Text_Rating_10__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_11 --></label>
+        <name>Text_Rating_11__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_12 --></label>
+        <name>Text_Rating_12__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_13 --></label>
+        <name>Text_Rating_13__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_14 --></label>
+        <name>Text_Rating_14__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_15 --></label>
+        <name>Text_Rating_15__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_16 --></label>
+        <name>Text_Rating_16__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_17 --></label>
+        <name>Text_Rating_17__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_18 --></label>
+        <name>Text_Rating_18__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_19 --></label>
+        <name>Text_Rating_19__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_1 --></label>
+        <name>Text_Rating_1__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_20 --></label>
+        <name>Text_Rating_20__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_21 --></label>
+        <name>Text_Rating_21__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_22 --></label>
+        <name>Text_Rating_22__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_23 --></label>
+        <name>Text_Rating_23__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_24 --></label>
+        <name>Text_Rating_24__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_25 --></label>
+        <name>Text_Rating_25__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_2 --></label>
+        <name>Text_Rating_2__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_3 --></label>
+        <name>Text_Rating_3__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_4 --></label>
+        <name>Text_Rating_4__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_5 --></label>
+        <name>Text_Rating_5__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_6 --></label>
+        <name>Text_Rating_6__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_7 --></label>
+        <name>Text_Rating_7__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_8 --></label>
+        <name>Text_Rating_8__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter rating comments --></help>
+        <label><!-- Text_Rating_9 --></label>
+        <name>Text_Rating_9__c</name>
     </fields>
     <fields>
         <label><!-- Title --></label>
@@ -615,6 +1408,10 @@
     </fields>
     <layouts>
         <layout>Employee Review Layout</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>

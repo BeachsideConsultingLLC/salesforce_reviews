@@ -13,13 +13,13 @@ global class ProspectorBatch implements Database.Batchable<String> {
     global ProspectorBatch() {
 
     }
-    global void execute(Database.Batchable<sObject>Context BC, List<String> e) {
+    global void execute(Database.BatchableContext BC, List<String> e) {
 
     }
-    global void finish(Database.Batchable<sObject>Context BC) {
+    global void finish(Database.BatchableContext BC) {
 
     }
-    global System.Iterable start(Database.Batchable<sObject>Context BC) {
+    global System.Iterable start(Database.BatchableContext BC) {
         return null;
     }
 }

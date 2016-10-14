@@ -6,12 +6,15 @@ public String catval {get; set;}
 public List<Integer> rats;
 public String currentRecordId {get;set;}
 public Boolean showContent { get; set; }
+public User reviewer { get; set; }
+public String revImg{get;set;}
 ApexPages.StandardController con;
+
 public ratingsOptions(ApexPages.StandardController controller) {
     showContent = true;
     con = controller;   
     empRev = (Employee_Review__c)con.getRecord();
-   List <Employee__c> emps = [ SELECT Name, First_Name__c, Last_Name__c, Group__c, Title__c, Rank_Date__c, Hire_Date__c, Project_Hours__c, Project_Name__c, Project_Number__c FROM Employee__c WHERE Id =: empRev.Employee_ID__c];
+   List <Employee__c> emps = [ SELECT Name, First_Name__c, Last_Name__c, Group__c, Title__c, Rank_Date__c, Hire_Date__c, Project_Hours__c, Project_Name__c, Project_Number__c, Emp_Image__c FROM Employee__c WHERE Id =: empRev.Employee_ID__c];
         for(Employee__c empT : emps){
             emp = empT;
             system.debug('EmpID: ' + emp.Name);
@@ -37,7 +40,9 @@ public ratingsOptions(ApexPages.StandardController controller) {
    	 	empRevData = empRevRec[0];
    	 	
    	 }
-   	 
+   	  if(empRev.Reviewer__c!=null){
+   	  	readReviewer();
+   	  }
    }
 
 //sync test
@@ -61,10 +66,13 @@ public ratingsOptions(ApexPages.StandardController controller) {
         }
         return null; 
     }
+    
     public PageReference readReviewer(){
     	system.debug('Reviewer: ' + empRev.Reviewer__c);
-    	List <User> reviewer = [ SELECT Id, EmployeeNumber FROM User WHERE Name =: empRev.Reviewer__c];
-          
+    	List <User> reviewers = [ SELECT Name, EmployeeNumber , FullPhotoURL FROM User WHERE Id =: empRev.Reviewer__c];
+        reviewer = reviewers[0];
+        system.debug('Reviewer Number: ' + reviewer.EmployeeNumber); 
+        revImg = reviewer.FullPhotoURL; 
     	return null; 
     
     }     

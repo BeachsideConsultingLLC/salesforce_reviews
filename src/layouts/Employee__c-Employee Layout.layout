@@ -46,6 +46,10 @@
                 <behavior>Edit</behavior>
                 <field>Project_Name__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Emp_Image__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

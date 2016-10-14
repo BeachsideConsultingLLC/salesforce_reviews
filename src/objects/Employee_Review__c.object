@@ -2191,7 +2191,7 @@
     <fields>
         <fullName>Reviewer_Photo__c</fullName>
         <externalId>false</externalId>
-        <formula>Image(&apos;resource/ep&apos;+  RIGHT(Reviewer__r.EmployeeNumber, 6),&apos;No Photo&apos; )</formula>
+        <formula>Image(&apos;/resource/&apos;+  Reviewer__r.EmployeeNumber,&apos;No Photo&apos; )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Reviewer Photo</label>
         <required>false</required>
